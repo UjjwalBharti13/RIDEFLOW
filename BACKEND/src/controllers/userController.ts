@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import User from "../models/user.js";
 
+// CREATE USER
+
 export const createUser = async (req : Request, res : Response) => {
      
     try {
@@ -24,6 +26,8 @@ export const createUser = async (req : Request, res : Response) => {
             clerkId,
             });
             return res.status(201).json({
+                success  : true,
+                message : "User created successfully",
                  newUser
             })
     } catch (error) {
@@ -36,3 +40,8 @@ export const createUser = async (req : Request, res : Response) => {
 
     }
 };
+
+// GET ALL USERS
+
+
+export const getAllUsers = 
