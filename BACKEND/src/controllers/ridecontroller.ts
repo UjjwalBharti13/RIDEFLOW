@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import User from "../models/user.js";
 import Driver from "../models/driver.js";
 import Ride from "../models/ride.js";
-import ride from "../models/ride.js";
 
 // @desc    Create new ride
 // @route   POST /api/rides
