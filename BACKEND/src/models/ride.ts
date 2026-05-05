@@ -41,7 +41,7 @@ const RideSchema : Schema = new Schema<IRide>(
          },
          origin_latitude : {
              type : Number,
-             requuired : true,
+             required : true,
          },
          destination_longitude : {
              type : Number,
