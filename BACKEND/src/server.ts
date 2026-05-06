@@ -7,16 +7,22 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import driverRoutes from "./routes/driverRoutes.js";
 import rideRoutes from "./routes/rideRoutes.js";  
+import helmet from "helmet";
+import morgan from "morgan";
+import rateLimit from "express-rate-limit";
 
 
 dotenv.config();
+
 
 const app = express();
 const PORT = Number(process.env.PORT) || 8000;
  
 app.use(express.json());
 
-
+app.use(helmet());
+app.use(morgan("combined"));
+app.use(cors());
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/drivers", driverRoutes);
