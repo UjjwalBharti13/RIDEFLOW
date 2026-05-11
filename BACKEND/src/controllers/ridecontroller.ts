@@ -4,6 +4,7 @@ import Driver from "../models/driver.js";
 import Ride from "../models/ride.js";
 import crypto from "crypto";
 import { success } from "zod";
+import { profileEnd } from "console";
 
 // @desc    Create new ride
 // @route   POST /api/rides
@@ -81,7 +82,7 @@ export const createRide = async (
             });
 
          return res.status(201).json({
-             success : true,
+             success : true, 
              message : "Ride created successfully",
              newRide
          });
@@ -329,3 +330,53 @@ export const verifyRideOTP = async(
       }
 };
 
+// Status Transition end point
+
+export const updateRideStatus = async(
+     req : Request,
+     res : Response,
+): Promise<Response> => {
+     try {
+        const { status } = req.body;
+        const ride  = await Ride.findById(req.params.id);
+          
+        if(!ride){
+             return res.status(404).json({
+                 success : false,
+                 message : "Ride not found",
+             });
+        }
+
+        const validTransition = {
+             pending : ["accepted" , "cancelled"],
+             accepted : ["ongoing", "cancelled"],
+             ongpoing : ["completed", "cancelled"],
+
+             completed : [],
+             cancelled : [],
+        };
+
+        if(!validTransition){
+             return res.status(400).json({
+                 success : false,
+                 message : "Invalid Status Transition",
+             });
+        }
+        ride.ride_status = status;
+        await ride.save();
+          
+        return res.status(200).json({
+             success : true,
+             message : "Ride fetch Successfully",
+             ride,
+        });
+
+
+     } catch (error) {
+        console.log("Ride Error fetching Error", error);
+        return res.status(500).json({
+             success : false,
+             message : "Internal Server Error",
+        });
+     }
+};
