@@ -14,7 +14,7 @@ import {
 // CREATE RIDE
 router.post("/", createRide);       
 
-// GET RIDE BY USER CLERK_ID
+// GET RIDE BY USER CLERK_
 router.get("/user/:userId", getRidesByUserId);
 
 // GET RIDE BY ID
