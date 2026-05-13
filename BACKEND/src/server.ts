@@ -9,6 +9,8 @@ import driverRoutes from "./routes/driverRoutes.js";
 import rideRoutes from "./routes/rideRoutes.js";  
 import helmet from "helmet";
 import morgan from "morgan";
+import { startScheduleRidesJob } from "./jobs/scheduleRides.js";
+
 import rateLimit from "express-rate-limit";
 
 
@@ -88,3 +90,4 @@ const connectDB = async() => {
 
 connectDB();
 
+startScheduleRidesJob();

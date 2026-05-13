@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
 import Driver from "../models/driver.js";
+import { success } from "zod";
+interface CustomRequest extends Request {
+     clerkId?: string;
+}
+
 
 
 // @desc    Get all drivers
@@ -197,3 +202,40 @@ export const deleteDriver = async (
 
      };
 };
+
+// update driver location
+
+export const updateDriverLocation = async(
+      req : CustomRequest,
+      res : Response,
+): Promise<Response> => {
+      try {
+           const { longitude, latitude } = req.body;
+            
+           const driver = await Driver.findOne({
+                  clerkId : req.clerkId,
+           })
+           if(!driver){
+                return res.status(404).json({
+                     success : false,
+                     message : "Driver not found",
+                });
+           }
+
+           driver.location.coordinates = [ longitude, latitude];
+           await driver.save();
+
+           
+
+
+
+      } catch (error) {
+          console.log("There is no update for Driver Location", error){
+                return res.status(500).json({
+                     success : false,
+                     message : "There is No Location",
+                });
+          }
+      };
+};
+

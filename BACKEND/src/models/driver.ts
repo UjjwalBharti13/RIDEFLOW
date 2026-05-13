@@ -14,6 +14,10 @@ export interface IDriver extends Document {
      ac_available : boolean;
      pet_friendly : boolean;
      rating : number;
+     location :{
+         type : String,
+         coordinates : Number[],
+     }
 
 }
 
@@ -68,6 +72,18 @@ const DriverSchema : Schema = new Schema<IDriver>(
              type : Number,
              default : 0
          },
+         location: {
+            type: {
+                type: String,
+                enum: ["Point"],
+                default: "Point",
+            },
+
+            coordinates: {
+                type: [Number],
+                default: [0, 0], // [longitude, latitude]
+            },
+        },
     },
     {
          timestamps : true,
