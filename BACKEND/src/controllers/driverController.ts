@@ -225,17 +225,19 @@ export const updateDriverLocation = async(
            driver.location.coordinates = [ longitude, latitude];
            await driver.save();
 
-           
+           return res.status(200).json({
+                success : true,
+                message : " Driver Details Fetch Succesfully",
+           });
 
 
 
       } catch (error) {
-          console.log("There is no update for Driver Location", error){
+          console.log("There is no update for Driver Location", error);
                 return res.status(500).json({
                      success : false,
                      message : "There is No Location",
                 });
-          }
-      };
+           };
 };
 
