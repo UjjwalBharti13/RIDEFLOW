@@ -102,4 +102,5 @@ const RideSchema : Schema = new Schema<IRide>(
     }
 );
 
+
 export default mongoose.model<IRide>("Ride" , RideSchema);

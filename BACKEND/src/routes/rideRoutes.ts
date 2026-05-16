@@ -1,4 +1,6 @@
 import express from "express";
+import { validate } from "../middlewares/validateMiddleware.js";
+import { createRideSchema } from "../validation/rideValidation.js"; 
 const router = express.Router();
 
 import {
@@ -33,6 +35,7 @@ router.patch("/:id/status", authenticate, updateRideStatus);
 
 router.post("/verify-otp", authenticate, verifyRideOTP);
 
+router.post("/", validate(createRideSchema), createRide);
 
 export default router;
 
