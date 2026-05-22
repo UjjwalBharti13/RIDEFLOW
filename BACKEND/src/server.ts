@@ -11,8 +11,6 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { startScheduleRidesJob } from "./jobs/scheduleRides.js";
 
-import rateLimit from "express-rate-limit";
-
 
 dotenv.config();
 
