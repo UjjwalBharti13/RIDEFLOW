@@ -24,7 +24,6 @@ app.use(helmet());
 app.use(morgan("combined"));
 app.use(cors());
 // Routes
-app.use("/api/users", userRoutes);
 app.use("/api/drivers", driverRoutes);
 app.use("/api/rides", rideRoutes);
 
@@ -87,5 +86,21 @@ const connectDB = async() => {
 };
 
 connectDB();
+
+// check helmet and morgan are working
+
+
+app.get("/test-helmet-morgan", (
+    req : Request,
+    res : Response,
+
+) =>{
+      res.status(200).json({
+          success : true,
+            message : "Helmet and Morgan are working",
+      });
+       
+    
+});
 
 startScheduleRidesJob();
