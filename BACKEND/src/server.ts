@@ -10,13 +10,15 @@ import rideRoutes from "./routes/rideRoutes.js";
 import helmet from "helmet";
 import morgan from "morgan";
 import { startScheduleRidesJob } from "./jobs/scheduleRides.js";
+import { success } from "zod";
+import { tr } from "zod/locales"; 
 
 
 dotenv.config();
 
 
 const app = express();
-const PORT = Number(process.env.PORT) || 8000;
+const PORT = Number(process.env.PORT) || 8000; 
  
 app.use(express.json());
 
@@ -24,7 +26,7 @@ app.use(helmet());
 app.use(morgan("combined"));
 app.use(cors());
 // Routes
-app.use("/api/drivers", driverRoutes);
+app.use("/api/drivers", driverRoutes); 
 app.use("/api/rides", rideRoutes);
 
 
@@ -100,6 +102,10 @@ app.get("/test-helmet-morgan", (
             message : "Helmet and Morgan are working",
       });
        
+      return res.status(200).json({ 
+           success : true,
+            message : "Helmet and Morgan are working",
+      });
     
 });
 
