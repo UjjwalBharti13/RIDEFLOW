@@ -15,8 +15,8 @@ export interface IDriver extends Document {
      pet_friendly : boolean;
      rating : number;
      location :{
-         type : String,
-         coordinates : Number[],
+         type : { type : String, enum : ['point'], default : 'point'},
+         coordinates : { type : [Number], default : [0,0]},
      }
 
 }

@@ -347,7 +347,7 @@ export const updateRideStatus = async(
              });
         }
 
-        const validTransition = {
+        const validTransition : Record<string , string[]> ={
              pending : ["accepted" , "cancelled"],
              accepted : ["ongoing", "cancelled"],
              ongpoing : ["completed", "cancelled"],
@@ -356,10 +356,10 @@ export const updateRideStatus = async(
              cancelled : [],
         };
 
-        if(!validTransition){
+        if(!validTransition[ride.ride_status]?.includes(status)){
              return res.status(400).json({
                  success : false,
-                 message : "Invalid Status Transition",
+                 message : "Invalid Status Transit ion",
              });
         }
         ride.ride_status = status;

@@ -1,8 +1,8 @@
-import corn from "node-cron";
+import cron from "node-cron";
 import Ride from "../models/ride.js";
 
 export const startScheduleRidesJob = () => {
-      corn.schedule("* * * * *" , async() => { // every minute
+      cron.schedule("* * * * *" , async() => { // every minute
          const now = new Date();
 
          const ridesToActivate = await Ride.find({
