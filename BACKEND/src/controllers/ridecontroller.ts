@@ -351,7 +351,7 @@ export const updateRideStatus = async(
              pending : ["accepted" , "cancelled"],
              accepted : ["ongoing", "cancelled"],
              ongpoing : ["completed", "cancelled"],
-
+ 
              completed : [],
              cancelled : [],
         };
